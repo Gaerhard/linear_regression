@@ -1,10 +1,13 @@
 from sqlite3 import Row
 import csv
 import sys
+import os
 
-def predict_value(theta0, theta1, x):
+def predict_value(theta1, theta0, x):
     return (theta1 * x + theta0)
 
+if (os.path.isfile("theta_values") == False):
+    sys.exit("[ERROR] Dataset isn't a regular file or doesn't exist")
 try:
     with open('theta_values', newline='') as f:
         reader = csv.reader(f, delimiter=',', quoting=csv.QUOTE_NONE)

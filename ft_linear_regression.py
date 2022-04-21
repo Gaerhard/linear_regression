@@ -1,9 +1,9 @@
 from sqlite3 import DataError
-from turtle import color
 from numpy import float64, int64
 import pandas
 import matplotlib.pyplot as plot
 import sys
+import os
 
 def printHelp():
     print("This is a linear regression training program")
@@ -97,6 +97,8 @@ def calcCoefficientOfDetermination(yMean, xValues, yValues, theta1, theta0):
 
 setParams, graph, accuracy, costEvolution, trainingResults = parseArgs(sys.argv)
 csvDataset = input("Choose the dataset you want to train: ")
+if (os.path.isfile(csvDataset) == False):
+    sys.exit("[ERROR] Dataset isn't a regular file")
 try:
     dataFrame = pandas.read_csv(csvDataset)
 except pandas.errors.EmptyDataError:
@@ -156,3 +158,4 @@ if (trainingResults):
 if (accuracy):
     print("Coefficient de determination = ", 
         calcCoefficientOfDetermination(calcMean(yValues), xValues, yValues, theta1, theta0))
+print("[SUCCESS] Training completed, theta values were written in theta_values file")
