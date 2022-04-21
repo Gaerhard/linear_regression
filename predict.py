@@ -17,13 +17,14 @@ try:
                 theta0 = float(row[1])
             except ValueError:
                 sys.exit("[ERROR] theta0 and theta1 should be numbers")
+            except IndexError:
+                sys.exit("[ERROR] theta1 and theta0 should be defined")
             break
+    value = float(input("Enter the number of kilometers: "))
+    print(predict_value(theta1, theta0, value))
 except FileNotFoundError:
     sys.exit("[ERROR] FileNotFound, Training program should be launched before using the prediction program")
-
-try:
-    value = float(input("Enter the number of kilometers: "))
 except ValueError:
-    print("[ERROR] Unexpected value type")
-    exit()
-print(predict_value(theta1, theta0, value))
+    sys.exit("[ERROR] Unexpected value type")
+except NameError:
+    sys.exit("[ERROR] theta values aren't defined")

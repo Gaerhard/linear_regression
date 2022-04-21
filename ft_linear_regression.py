@@ -142,6 +142,7 @@ xValues = xValues * scale
 yValues = yValues * scale
 with open('theta_values', "w+") as writer:
     writer.write(theta1.__str__() + "," + theta0.__str__())
+    print("[SUCCESS] Training completed, theta values were written in theta_values file")
 if (graph):
     plot.axes().grid()
     plot.scatter(xValues,yValues)
@@ -158,4 +159,3 @@ if (trainingResults):
 if (accuracy):
     print("Coefficient de determination = ", 
         calcCoefficientOfDetermination(calcMean(yValues), xValues, yValues, theta1, theta0))
-print("[SUCCESS] Training completed, theta values were written in theta_values file")
